@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { intcrement, decment,incrementByAmout } from "./features/counter/counterSlice";
 
 function App() {
+  const [value, setValue] = useState(0);
+
+  const count = useSelector((state) => {
+    return state.counter.value;
+  });
+
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+      />
+      <div>{count}</div>
+      <button
+        onClick={() => {
+          dispatch(intcrement());
+        }}
+      >
+        +1
+      </button>
+      <button
+        onClick={() => {
+          dispatch(decment());
+        }}
+      >
+        -1
+      </button>
+      <button
+        onClick={() => {
+          dispatch(incrementByAmout(Number(value)));
+        }}
+      >
+        自訂
+      </button>
+    </>
   );
 }
 
