@@ -1,14 +1,29 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { intcrement, decment,incrementByAmout } from "./features/counter/counterSlice";
+import {
+  zero,
+  increment,
+  decment,
+  incrementByAmout,
+  customizeNumber,
+} from "./features/counter/counterSlice";
+import styled from "styled-components"
+
+
+const Block = styled.div`
+  width:200px;
+  height:50px;
+  margin:20px auto;
+  background-color:green;
+  color:white;
+`
+
 
 function App() {
   const [value, setValue] = useState(0);
 
-  const count = useSelector((state) => {
-    return state.counter.value;
-  });
-
+  const count = useSelector((state) => state.counter.value);
+  const number = useSelector((state) => state.counter.history);
   const dispatch = useDispatch();
 
   return (
@@ -22,7 +37,7 @@ function App() {
       <div>{count}</div>
       <button
         onClick={() => {
-          dispatch(intcrement());
+          dispatch(increment());
         }}
       >
         +1
@@ -41,6 +56,23 @@ function App() {
       >
         自訂
       </button>
+      <button
+        onClick={() => {
+          dispatch(customizeNumber(Number(value)));
+        }}
+      >
+        Test
+      </button>
+      <button
+        onClick={() => {
+          dispatch(zero());
+        }}
+      >
+        歸零
+      </button>
+      {number.map((data)=>{
+        return <Block>{data}</Block>
+      })}
     </>
   );
 }
