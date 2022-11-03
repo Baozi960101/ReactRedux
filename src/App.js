@@ -61,7 +61,7 @@ function App() {
           dispatch(customizeNumber(Number(value)));
         }}
       >
-        測試
+        正式版本
       </button>
       <button
         onClick={() => {
