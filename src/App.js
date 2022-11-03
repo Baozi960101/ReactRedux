@@ -61,7 +61,7 @@ function App() {
           dispatch(customizeNumber(Number(value)));
         }}
       >
-        正式版本
+        正式版本1,0
       </button>
       <button
         onClick={() => {
