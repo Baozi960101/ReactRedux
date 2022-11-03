@@ -61,7 +61,7 @@ function App() {
           dispatch(customizeNumber(Number(value)));
         }}
       >
-        Thunk
+        Test
       </button>
       <button
         onClick={() => {
